@@ -4,7 +4,8 @@
 typedef struct
 {
     char *command;
-    char *arg[ARG_MAX_SIZE];
+    // char *args[ARG_MAX_SIZE];
+    char *arg;
 } parseInfo;
 
 parseInfo *parse(char *);

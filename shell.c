@@ -1,24 +1,67 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include <readline/readline.h>
-#include "headers/parse.h" //include declarations for parse-related structs
+#include "headers/parse.h"
+#include "headers/builtin.h"
 
 enum BUILTIN_COMMANDS
 {
     NO_SUCH_BUILTIN = 0,
-    EXIT,
-    JOBS
+    EXIT
 };
 
-int isBuiltInCommand(char *cmd)
+int execute(parseInfo* info)
 {
+    char* cmd = info->command;
+    char *arg = info->arg;
 
-    if (strncmp(cmd, "exit", strlen("exit")) == 0)
-    {
+    if (strcmp(cmd, "exit") == 0){
+        int status = sh_exit();
+        return status;
+    }else if (strcmp(cmd, "cat")==0){
+        sh_cat(arg);
+        return EXIT;
+    }else if (strcmp(cmd, "clear")==0){
+        sh_clear();
         return EXIT;
     }
-    return NO_SUCH_BUILTIN;
+    else if (strcmp(cmd, "cd") == 0){
+        sh_cd(arg);
+        return EXIT;
+    }else if (strcmp(cmd, "pwd")==0){
+        sh_pwd();
+        return EXIT;
+    }
+
+    printf("Not a built-in command, run `help` to see the commands list.\n");
+    return EXIT;
+}
+
+int shell_launch(char *args){
+    pid_t pid, wpid;
+    int status;
+
+    pid = fork();
+    if (pid == 0){
+        // Child process
+        if (execvp(args[0], args) == -1){
+            perror("shell error!");
+        }
+        exit(EXIT_FAILURE);
+    }else if (pid < 0){
+        // Error forking
+        perror("Forking error");
+    }else{
+        // Parent process
+        do{
+            wpid = waitpid(pid, &status, WUNTRACED);
+        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+    }
+
+    return 1;
 }
 
 int main(int argc, char **argv)
@@ -32,20 +75,20 @@ int main(int argc, char **argv)
     while (1)
     {
         cmdLine = readline("bruh > ");
-        printf("Enterinng loop %s\n", cmdLine);
         // TODO: Display History
-        
         info = parse(cmdLine);
+        int status;
 
-        // If command exist, execute
-
-        if (info == NULL)
-        {
+        if (info == NULL){
             free(cmdLine);
             continue;
+        }else{
+            status = execute(info);
         }
-
+        
         free_info(info);
         free(cmdLine);
+        if (status==0)
+            break;
     }
 }
