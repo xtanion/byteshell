@@ -24,7 +24,7 @@ Once you've everything installed, Make the project.
 make
 ```
 
-**Implemented commands:**
+## Implemented commands
 
 * `help` - Shows list of commands
 * `cat` - A cat (args: int/number)
