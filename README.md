@@ -10,7 +10,7 @@ purrsh > cat
 
 ## Getting Started
 
-For UNIX systems, make sure you've `lreadlines`. In Ubuntu based systems simply run:
+For Linux based systems, make sure you've `lreadlines`. In Ubuntu based systems simply run:
 
 ```
 sudo apt update
@@ -24,7 +24,7 @@ Once you've everything installed, Make the project.
 make
 ```
 
-**Implememnted commands:**
+**Implemented commands:**
 
 * `help` - Shows list of commands
 * `cat` - A cat (args: int/number)
