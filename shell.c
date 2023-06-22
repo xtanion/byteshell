@@ -34,6 +34,9 @@ int execute(parseInfo* info)
     }else if (strcmp(cmd, "pwd")==0){
         sh_pwd();
         return EXIT;
+    }else if (strcmp(cmd, "ls")==0){
+        sh_ls();
+        return EXIT;
     }
 
     printf("Not a built-in command, run `help` to see the commands list.\n");

@@ -41,7 +41,20 @@ int sh_clear(){
 }
 
 int sh_ls(){
-
+    DIR *d;
+    struct dirent *dir;
+    d = opendir(".");
+    if (d){
+        while ((dir = readdir(d)) != NULL){
+            if(dir->d_type == DT_DIR)
+                printf("%s%s%s ", BLUE, dir->d_name, NORMAL);
+            else
+                printf("%s ", dir->d_name);
+        }
+        closedir(d);
+        printf("\n");
+    }
+    return 1;
 }
 
 int sh_cd(char *arg){
@@ -59,6 +72,10 @@ int sh_pwd(){
     char path[MAX_CHAR_SIZE];
     printf("%s\n", getcwd(path, MAX_CHAR_SIZE));
     return 1;
+}
+
+int sh_help(){
+    
 }
 
 int sh_exit(){
