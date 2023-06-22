@@ -1,6 +1,12 @@
 # Purrfect Shell
 
 A small project to write a shell-like program, It contains a very few commands as of now! 
+```sh
+purrsh > cat
+ /\_/\  
+( o.o )
+ > ^ <
+```
 
 ## Getting Started
 

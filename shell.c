@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        cmdLine = readline("bruh > ");
+        cmdLine = readline("purrsh > ");
         // TODO: Display History
         info = parse(cmdLine);
         int status;
