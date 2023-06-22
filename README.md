@@ -26,6 +26,12 @@ make
 
 **Implememnted commands:**
 
-* help: Shows list of commans
+* `help` - Shows list of commands
+* `cat` - A cat (args: int/number)
+* `ls` - List all directories and files
+* `cd <path>` - Change directory to `path`
+* `pwd` - The current working directory
+* `clear` - Clears the shell
+* `exit` - Exit from the current shell.
 
 
