@@ -75,7 +75,15 @@ int sh_pwd(){
 }
 
 int sh_help(){
-    
+    puts(
+        "`help` - Shows list of commands\n"
+        "`cat` - A cat(args : int / number)\n"
+        "`ls` - List all directories and files\n"
+        "`cd<path>` - Change directory to `path`\n"
+        "`pwd` - The current working directory\n"
+        "`clear` - Clears the shell\n"
+        "`exit` - Exit from the current shell");
+    return 1;
 }
 
 int sh_exit(){

@@ -37,6 +37,9 @@ int execute(parseInfo* info)
     }else if (strcmp(cmd, "ls")==0){
         sh_ls();
         return EXIT;
+    }else if (strcmp(cmd, "help") == 0){
+        sh_help();
+        return EXIT;
     }
 
     printf("Not a built-in command, run `help` to see the commands list.\n");
@@ -72,8 +75,7 @@ int main(int argc, char **argv)
 
     char *cmdLine;
     parseInfo *info;         // info stores all the information returned by parser.
-    struct commandType *com; // com stores command name and Arg list for one command.
-    fprintf(stderr, "press ctrl-c to exit\n");
+    printf("use command exit to exit\n");
 
     while (1)
     {

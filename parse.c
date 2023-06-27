@@ -18,7 +18,7 @@ parseInfo *parse (char *cmdline) {
 
     Result = malloc(sizeof(parseInfo));
 
-    int bufsize = TOKEN_BUFSIZE, position = 0;
+    // int bufsize = TOKEN_BUFSIZE, position = 0; required to loop
     char *token;
 
     token = strtok(cmdline, TOKEN_DELIM);

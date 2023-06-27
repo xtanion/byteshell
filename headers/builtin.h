@@ -12,6 +12,7 @@
 #define NORMAL "\x1B[0m"
 #define BLUE "\x1B[34m"
 
+int sh_help();
 int sh_cat(char *count);
 int sh_clear();
 int sh_cd(char *path);
